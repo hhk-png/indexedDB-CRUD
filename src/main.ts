@@ -1,6 +1,19 @@
 import './style.css'
 import typescriptLogo from './typescript.svg'
 import { setupCounter } from './counter'
+import { addData, cursorGetData, cursorGetDataByIndex, getDataByIndex, getDataByKey, openDB } from './dbOptions'
+
+
+const db = await openDB("tempDataBase", 1)
+addData(db, 'signalChat', {
+    sequenceId: Math.floor(Math.random() * 30),
+    link: 'www.baidu.com' + Math.random(),
+    message: 'hello world' + Math.random()
+})
+getDataByKey(db, 'signalChat', 3)
+cursorGetData(db, 'signalChat')
+getDataByIndex(db, 'signalChat', 'link', 'www.baidu.com')
+cursorGetDataByIndex(db, 'signalChat', 'link', 'www.baidu.com')
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
